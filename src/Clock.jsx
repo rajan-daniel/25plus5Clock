@@ -1,25 +1,34 @@
 import { useState, useRef } from "react";
 
 export const Clock = () => {
+    const running = useRef(null);
+
     const intervalRef = useRef(null);
     const [time, setTime] = useState(1500)
 
     const start = () => {
+        running.current = true;
+        console.log(running.current);
+        clearInterval(intervalRef.current);
         intervalRef.current = setInterval(() => { setTime((prev) => prev - 1) }, 1000)
     }
 
     const pause = () => {
+        running.current = false;
+        console.log(running.current);
         clearInterval(intervalRef.current);
     }
 
     const reset = () => {
-        setTime(1500)
+        running.current = false;
+        console.log(running.current);
+        clearInterval(intervalRef.current);
+        setTime(1500);
     }
 
     return (
         <>
-            <Break />
-            <TimeControl time={time} setTime={setTime} />
+            <TimeControl time={time} setTime={setTime} isRunning={running} />
             <h1>{time}</h1>
             <button onClick={start}>Start</button>
             <button onClick={pause}>Stop</button>
@@ -28,27 +37,13 @@ export const Clock = () => {
     );
 }
 
-export const Break = () => {
-
-    const [breakLength, setBreakLength] = useState(300)
-
-    return (
-        <>
-            <h1>Break</h1>
-            <h2>{breakLength}</h2>
-            <button>Increment</button>
-            <button>Decrement</button>
-        </>
-    );
-}
-
-export const TimeControl = ({ time, setTime }) => {
+export const TimeControl = ({ time, setTime, isRunning }) => {
     return (
         <>
             <h1>Session Length</h1>
             <p>{time}</p>
-            <button onClick={() => setTime((prev) => prev + 60)}>Increment</button>
-            <button onClick={() => setTime((prev) => prev - 60)}>Decrement</button>
+            <button onClick={() => { if (isRunning.current === false) { setTime((prev) => prev + 60) } }}>Increment</button>
+            <button onClick={() => { if (isRunning.current === false) { setTime((prev) => prev - 60) } }}>Decrement</button>
         </>
     );
 }
