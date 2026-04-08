@@ -93,45 +93,59 @@ export const Timer = () => {
 
     return (
         <>
-            <BreakTimeControl breakMinutes={breakMinutes} setbreakMinutes={setbreakMinutes} setTime={setTime} isRunning={running} onBreak={onBreak} />
-            <TimeControl minutes={minutes} setMinutes={setMinutes} setTime={setTime} isRunning={running} onBreak={onBreak}/>
-            <h1>{onBreak.current ? `On Break` : `In Session`}</h1>
-            <h1>{drawTime(time)}</h1>
-            <button onClick={onBreak.current ? startBreak : start}>Start</button>
-            <button onClick={pause}>Stop</button>
-            <button onClick={reset}>Reset</button>
-
-            {/*<button onClick={alertAndSwap}>FORCE END DEBUG BUTTON</button>*/}
+            
+            <div id="timer">
+                <img id="banner" src="src\assets\banner.png"></img>
+                <div id="controls">
+                    <BreakTimeControl breakMinutes={breakMinutes} setbreakMinutes={setbreakMinutes} setTime={setTime} isRunning={running} onBreak={onBreak} />
+                    <TimeControl minutes={minutes} setMinutes={setMinutes} setTime={setTime} isRunning={running} onBreak={onBreak} />
+                </div>
+                <div id="clockComponent">
+                    <p>{onBreak.current ? `On Break` : `In Session`}</p>
+                    <h1 id="time">{drawTime(time)}</h1>
+                    <div id="buttons">
+                        <button onClick={onBreak.current ? startBreak : start}>Start</button>
+                        <button onClick={pause}>Stop</button>
+                        <button onClick={reset}>Reset</button>
+                    </div>
+                </div>
+                {/*<button onClick={alertAndSwap}>FORCE END DEBUG BUTTON</button>*/}
+            </div>
+            <footer id="footer">A simple Pomodoro Clock by Rajan Daniel</footer>
         </>
     );
 }
 
-export const TimeControl = ({ minutes, setMinutes, setTime, isRunning, onBreak}) => {
+export const TimeControl = ({ minutes, setMinutes, setTime, isRunning, onBreak }) => {
     return (
         <>
-            <h1>Session Length</h1>
-            <h1>{minutes}</h1>
-            <button onClick={() => {
-                if (isRunning.current === false) {
-                    if (onBreak.current === false) {
-                        setTime((minutes + 1) * 60);
-                        setMinutes((prev) => prev + 1);
-                    } else {
-                        setMinutes((prev) => prev + 1);
-                    }
-                }
-            }}>Increment</button>
+            <div id="clockComponent">
+                <p>Session Length</p>
+                <h1 id="controlTime">{minutes} min</h1>
+                <div id="buttons">
+                    <button onClick={() => {
+                        if (isRunning.current === false) {
+                            if (onBreak.current === false) {
+                                setTime((minutes + 1) * 60);
+                                setMinutes((prev) => prev + 1);
+                            } else {
+                                setMinutes((prev) => prev + 1);
+                            }
+                        }
+                    }}>+</button>
 
-            <button onClick={() => {
-                if (isRunning.current === false && minutes > 1) {
-                    if (onBreak.current === false) {
-                        setTime((minutes - 1) * 60);
-                        setMinutes((prev) => prev - 1);
-                    } else {
-                        setMinutes((prev) => prev - 1);
-                    }
-                }
-            }}>Decrement</button>
+                    <button onClick={() => {
+                        if (isRunning.current === false && minutes > 1) {
+                            if (onBreak.current === false) {
+                                setTime((minutes - 1) * 60);
+                                setMinutes((prev) => prev - 1);
+                            } else {
+                                setMinutes((prev) => prev - 1);
+                            }
+                        }
+                    }}>-</button>
+                </div>
+            </div>
         </>
     );
 }
@@ -139,29 +153,33 @@ export const TimeControl = ({ minutes, setMinutes, setTime, isRunning, onBreak})
 export const BreakTimeControl = ({ breakMinutes, setbreakMinutes, setTime, isRunning, onBreak }) => {
     return (
         <>
-            <h1>Break Length</h1>
-            <h1>{breakMinutes}</h1>
-            <button onClick={() => {
-                if (isRunning.current === false) {
-                    if (onBreak.current) {
-                        setTime((breakMinutes + 1) * 60);
-                        setbreakMinutes((prev) => prev + 1);
-                    } else {
-                        setbreakMinutes((prev) => prev + 1);
-                    }
-                }
-            }}>Increment</button>
+            <div id="clockComponent">
+                <p>Break Length</p>
+                <h1 id="controlTime">{breakMinutes} min</h1>
+                <div id="buttons">
+                    <button onClick={() => {
+                        if (isRunning.current === false) {
+                            if (onBreak.current) {
+                                setTime((breakMinutes + 1) * 60);
+                                setbreakMinutes((prev) => prev + 1);
+                            } else {
+                                setbreakMinutes((prev) => prev + 1);
+                            }
+                        }
+                    }}>+</button>
 
-            <button onClick={() => {
-                if (isRunning.current === false && breakMinutes > 1) {
-                    if (onBreak.current) {
-                        setTime((breakMinutes - 1) * 60);
-                        setbreakMinutes((prev) => prev - 1);
-                    } else {
-                        setbreakMinutes((prev) => prev - 1);
-                    }
-                }
-            }}>Decrement</button>
+                    <button onClick={() => {
+                        if (isRunning.current === false && breakMinutes > 1) {
+                            if (onBreak.current) {
+                                setTime((breakMinutes - 1) * 60);
+                                setbreakMinutes((prev) => prev - 1);
+                            } else {
+                                setbreakMinutes((prev) => prev - 1);
+                            }
+                        }
+                    }}>-</button>
+                </div>
+            </div>
         </>
     );
 }
