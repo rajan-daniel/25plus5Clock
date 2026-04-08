@@ -1,9 +1,12 @@
 import { useState, useRef } from "react";
+import useSound from 'use-sound';
+import alarmSound from './assets/alarm.mp3';
 
 export const Timer = () => {
     const running = useRef(false);
     const onBreak = useRef(false);
     const isPaused = useRef(false);
+    const [playAlarm] = useSound(alarmSound);
 
     if (running.current === false) {
         console.log(`timer is ${running.current}`);
@@ -79,6 +82,7 @@ export const Timer = () => {
     }
 
     const alertAndSwap = () => {
+        playAlarm();
         onBreak.current = !onBreak.current;
         if (onBreak.current) {
             startBreak();
