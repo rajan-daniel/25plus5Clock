@@ -123,7 +123,7 @@ export const TimeControl = ({ minutes, setMinutes, setTime, isRunning, onBreak }
                 <h1 id="controlTime">{minutes} min</h1>
                 <div id="buttons">
                     <button onClick={() => {
-                        if (isRunning.current === false) {
+                        if (isRunning.current === false && minutes < 60) {
                             if (onBreak.current === false) {
                                 setTime((minutes + 1) * 60);
                                 setMinutes((prev) => prev + 1);
@@ -157,7 +157,7 @@ export const BreakTimeControl = ({ breakMinutes, setbreakMinutes, setTime, isRun
                 <h1 id="controlTime">{breakMinutes} min</h1>
                 <div id="buttons">
                     <button onClick={() => {
-                        if (isRunning.current === false) {
+                        if (isRunning.current === false && breakMinutes < 60) {
                             if (onBreak.current) {
                                 setTime((breakMinutes + 1) * 60);
                                 setbreakMinutes((prev) => prev + 1);
