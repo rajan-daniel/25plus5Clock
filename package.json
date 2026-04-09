@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/rajan-daniel/25plus5Clock.git",
+  "homepage": "https://github.com/rajan-daniel/25plus5Clock/",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",

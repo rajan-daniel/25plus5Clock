@@ -13,7 +13,6 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
   color: #e5e7eb;
   margin: 0;
 }
@@ -24,13 +23,13 @@ button {
   color: var(--accent);
   border: 2px solid var(--accent);
   padding: 10px 20px;
-  font-size: 36px;
+  font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 #timer {
-  padding: 16rem 16rem;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +39,7 @@ button {
 #controls {
   display: flex;
   flex-direction: row;
-  gap: 15rem;
+  gap: 2rem;
   padding: 40px;
 }
 
@@ -71,7 +70,7 @@ button {
 }
 
 #controlTime {
-  font-size: 70px;
+  font-size: 30px;
 }
 
 #time{
@@ -79,7 +78,7 @@ button {
 }
 
 p {
-  font-size: 40px;
+  font-size: 18px;
   -webkit-text-stroke: 2px white;
 }
 
