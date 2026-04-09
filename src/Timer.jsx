@@ -93,9 +93,8 @@ export const Timer = () => {
 
     return (
         <>
-            
             <div id="timer">
-                <img id="banner" src="src\assets\banner.png"></img>
+                <img id="banner" src="https://i.imgur.com/EGdbg58.png"></img>
                 <div id="controls">
                     <BreakTimeControl breakMinutes={breakMinutes} setbreakMinutes={setbreakMinutes} setTime={setTime} isRunning={running} onBreak={onBreak} />
                     <TimeControl minutes={minutes} setMinutes={setMinutes} setTime={setTime} isRunning={running} onBreak={onBreak} />
